@@ -41,5 +41,25 @@ describe("Mutable collection", function(){
 			expect(collection.item(0)).toEqual(3);
 			expect(collection.item(1)).toEqual(7);
 			expect(collection.item(2)).toEqual(-2);});});
+
+	describe("can be manipulated", function(){
+
+		it("appends items.", function(){
+			var collection = Collection.createMutable();
+			collection.append(5);
+			expect(collection.isEmpty()).toBeFalsy();
+			expect(collection.length()).toEqual(1);
+			expect(collection.item(0)).toEqual(5);});
+
+		it("appends items at the end.", function(){
+			var collection = Collection.createMutable([2, 3]);
+			collection.append(5);
+			expect(collection.item(2)).toEqual(5);});
+
+		it("does not manipulate the underlying data set.", function(){
+			var data = [1, 2];
+			var collection = Collection.createMutable(data);
+			collection.append(3);
+			expect(data.length).toEqual(2);});});
 });
 

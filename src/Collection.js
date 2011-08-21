@@ -1,8 +1,11 @@
 var Collection = (function(){
 	var lib = {};
 
+	function copy(array){
+		return array.slice();}
+
 	function Mutable(data){
-		data = typeof data != 'undefined' ? data : [];
+		data = typeof data != 'undefined' ? copy(data) : [];
 
 		this.length = function(){
 			return data.length;};
@@ -11,7 +14,10 @@ var Collection = (function(){
 			return !data.length;};
 
 		this.item = function(index){
-			return data[index];};}
+			return data[index];};
+
+		this.append = function(item){
+			data.push(item);};}
 
 	lib.createMutable = function(data){
 		return new Mutable(data);};
