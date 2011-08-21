@@ -42,50 +42,57 @@ describe("Mutable collection", function(){
 			expect(collection.item(1)).toEqual(7);
 			expect(collection.item(2)).toEqual(-2);});});
 
-	describe("can be manipulated", function(){
+	describe("Manipulation", function(){
 
-		it("appends items.", function(){
-			var collection = Collection.createMutable();
-			collection.push(5);
-			expect(collection.isEmpty()).toBeFalsy();
-			expect(collection.length()).toEqual(1);
-			expect(collection.item(0)).toEqual(5);});
+		describe("appending item", function(){
 
-		it("appends items at the end.", function(){
-			var collection = Collection.createMutable([2, 3]);
-			collection.push(5);
-			expect(collection.item(2)).toEqual(5);});
+			it("sets the first item if the data set is empty.", function(){
+				var collection = Collection.createMutable();
+				collection.push(5);
+				expect(collection.isEmpty()).toBeFalsy();
+				expect(collection.length()).toEqual(1);
+				expect(collection.item(0)).toEqual(5);});
 
-		it("does not manipulate the underlying data set.", function(){
-			var data = [1, 2];
-			var collection = Collection.createMutable(data);
-			collection.push(3);
-			expect(data.length).toEqual(2);});
+			it("adds the item at the end.", function(){
+				var collection = Collection.createMutable([2, 3]);
+				collection.push(5);
+				expect(collection.item(2)).toEqual(5);});
 
-		it("prepends items.", function(){
-			var collection = Collection.createMutable([2, 4]);
-			collection.unshift(6);
-			expect(collection.length()).toEqual(3);
-			expect(collection.item(0)).toEqual(6);
-			expect(collection.item(1)).toEqual(2);});
+			it("does not manipulate the underlying data set.", function(){
+				var data = [1, 2];
+				var collection = Collection.createMutable(data);
+				collection.push(3);
+				expect(data.length).toEqual(2);});});
 
-		it("removes items from the end and returns them.", function(){
-			var collection = Collection.createMutable([3, 1, 8]);
-			var lastItem = collection.pop();
-			expect(lastItem).toEqual(8);
-			expect(collection.length()).toEqual(2);});
+		describe("prepending item", function(){
 
-		it("removes items from the beginning and returns them.", function(){
-			var collection = Collection.createMutable([3, 1, 8]);
-			var firstItem = collection.shift();
-			expect(firstItem).toEqual(3);
-			expect(collection.length()).toEqual(2);});
+			it("adds the item at the beginning.", function(){
+				var collection = Collection.createMutable([2, 4]);
+				collection.unshift(6);
+				expect(collection.length()).toEqual(3);
+				expect(collection.item(0)).toEqual(6);
+				expect(collection.item(1)).toEqual(2);});});
 
-		it("sets items.", function(){
-			var collection = Collection.createMutable([1, 3, 5]);
-			collection.set(1, 4);
-			expect(collection.item(1)).toEqual(4);});
+		describe("removing last item", function(){
 
-});
-});
+			it("removes item from the end and returns it.", function(){
+				var collection = Collection.createMutable([3, 1, 8]);
+				var lastItem = collection.pop();
+				expect(lastItem).toEqual(8);
+				expect(collection.length()).toEqual(2);});});
+
+		describe("removing first item", function(){
+
+			it("removes item from the beginning and returns it.", function(){
+				var collection = Collection.createMutable([3, 1, 8]);
+				var firstItem = collection.shift();
+				expect(firstItem).toEqual(3);
+				expect(collection.length()).toEqual(2);});});
+
+		describe("setting item", function(){
+
+			it("sets items.", function(){
+				var collection = Collection.createMutable([1, 3, 5]);
+				collection.set(1, 4);
+				expect(collection.item(1)).toEqual(4);});});});});
 
