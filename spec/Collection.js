@@ -1,6 +1,6 @@
 describe("Mutable collection", function(){
 
-	describe("created without data", function(){
+	describe("containing no data", function(){
 
 		it("is empty.", function(){
 			var collection = new Collection.Mutable();
@@ -10,7 +10,7 @@ describe("Mutable collection", function(){
 			var collection = new Collection.Mutable();
 			expect(collection.length()).toEqual(0);});});
 
-	describe("created with an empty data set", function(){
+	describe("containing an empty data set", function(){
 
 		it("is empty.", function(){
 			var collection = new Collection.Mutable([]);
