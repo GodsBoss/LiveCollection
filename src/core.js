@@ -7,5 +7,9 @@ var LiveCollection = (function(){
 
 	lib.MutableCollection = MutableCollection;
 
+	lib.addMethod = function(name, method){
+		MutableCollection.prototype[name] = function(){
+			return method.apply(this, arguments);};};
+
 	return lib;})();
 
