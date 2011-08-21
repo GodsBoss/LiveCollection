@@ -22,6 +22,12 @@ var Collection = (function(){
 		this.unshift = function(item){
 			data.unshift(item);};
 
+		this.pop = function(){
+			return data.pop();};
+
+		this.shift = function(){
+			return data.shift();};
+
 		this.set = function(index, item){
 			data[index] = item;};}
 

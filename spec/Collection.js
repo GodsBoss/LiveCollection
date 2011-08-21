@@ -69,6 +69,18 @@ describe("Mutable collection", function(){
 			expect(collection.item(0)).toEqual(6);
 			expect(collection.item(1)).toEqual(2);});
 
+		it("removes items from the end and returns them.", function(){
+			var collection = Collection.createMutable([3, 1, 8]);
+			var lastItem = collection.pop();
+			expect(lastItem).toEqual(8);
+			expect(collection.length()).toEqual(2);});
+
+		it("removes items from the beginning and returns them.", function(){
+			var collection = Collection.createMutable([3, 1, 8]);
+			var firstItem = collection.shift();
+			expect(firstItem).toEqual(3);
+			expect(collection.length()).toEqual(2);});
+
 		it("sets items.", function(){
 			var collection = Collection.createMutable([1, 3, 5]);
 			collection.set(1, 4);
