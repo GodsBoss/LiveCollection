@@ -13,7 +13,8 @@ var Collection = (function(){
 		this.item = function(index){
 			return data[index];};}
 
-	lib.Mutable = Mutable;
+	lib.createMutable = function(data){
+		return new Mutable(data);};
 
 	return lib;})();
 
