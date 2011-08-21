@@ -2,11 +2,16 @@ var Collection = (function(){
 	var lib = {};
 
 	function Mutable(data){
+		data = typeof data != 'undefined' ? data : [];
+
 		this.length = function(){
-			return 0;};
+			return data.length;};
 
 		this.isEmpty = function(){
-			return true;};}
+			return !data.length;};
+
+		this.item = function(index){
+			return data[index];};}
 
 	lib.Mutable = Mutable;
 
