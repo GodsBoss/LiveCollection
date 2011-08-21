@@ -18,24 +18,51 @@ describe("Live collection", function(){
 		expect(values1).not.toEqual(data);});
 
 	it("can be extended with methods.", function(){
+		var functionWasCalled = false;
 
-		function length(){
-			return this.values().length;}
+		function call(){
+			functionWasCalled = true;}
 
-		LiveCollection.addMethod('length', length);
+		LiveCollection.addMethod('call', call);
 
-		var data = [5, 0, -2, 3];
-		var collection = new LiveCollection.MutableCollection(data);
-		expect(collection.length()).toEqual(data.length);});
+		var collection = new LiveCollection.MutableCollection([]);
+		collection.call();
+		expect(functionWasCalled).toBeTruthy();});
 
 	it("can be extended with methods with arguments.", function(){
+		var argumentsToBeStored = [1, 5, 3];
+		var storedArguments;
 
-		function get(index){
-			return this.values()[index];}
+		function storeArguments(){
+			storedArguments=arguments;}
 
-		LiveCollection.addMethod('get', get);
+		LiveCollection.addMethod('storeArguments', storeArguments);
 
-		var data = [2, 3, -1, 8];
-		var collection = new LiveCollection.MutableCollection(data);
-		expect(collection.get(2)).toEqual(-1);});});
+		var collection = new LiveCollection.MutableCollection([]);
+		collection.storeArguments.apply(collection, argumentsToBeStored);
+		expect(storedArguments).toEqual(argumentsToBeStored);});
+
+	it("returns the value the method returns.", function(){
+		var valueToBeReturned = 'foo';
+
+		function returnValue(){
+			return valueToBeReturned;}
+
+		LiveCollection.addMethod('returnValue', returnValue);
+
+		var collection = new LiveCollection.MutableCollection([]);
+		expect(collection.returnValue()).toEqual(valueToBeReturned);});
+
+	it("lets a method have access to the collection's values.", function(){
+		var valuesInCollection = [1, 7, 3];
+		var valuesViaThisInMethod;
+
+		function storeValues(){
+			valuesViaThisInMethod = this.values();}
+
+		LiveCollection.addMethod('storeValues', storeValues);
+
+		var collection = new LiveCollection.MutableCollection(valuesInCollection);
+		collection.storeValues();
+		expect(valuesViaThisInMethod).toEqual(valuesInCollection);});});
 
