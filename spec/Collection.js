@@ -60,6 +60,20 @@ describe("Mutable collection", function(){
 			var data = [1, 2];
 			var collection = Collection.createMutable(data);
 			collection.append(3);
-			expect(data.length).toEqual(2);});});
+			expect(data.length).toEqual(2);});
+
+		it("prepends items.", function(){
+			var collection = Collection.createMutable([2, 4]);
+			collection.prepend(6);
+			expect(collection.length()).toEqual(3);
+			expect(collection.item(0)).toEqual(6);
+			expect(collection.item(1)).toEqual(2);});
+
+		it("sets items.", function(){
+			var collection = Collection.createMutable([1, 3, 5]);
+			collection.set(1, 4);
+			expect(collection.item(1)).toEqual(4);});
+
+});
 });
 

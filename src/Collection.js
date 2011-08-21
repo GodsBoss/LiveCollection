@@ -17,7 +17,13 @@ var Collection = (function(){
 			return data[index];};
 
 		this.append = function(item){
-			data.push(item);};}
+			data.push(item);};
+
+		this.prepend = function(item){
+			data.unshift(item);};
+
+		this.set = function(index, item){
+			data[index] = item;};}
 
 	lib.createMutable = function(data){
 		return new Mutable(data);};
