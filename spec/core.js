@@ -8,6 +8,15 @@ describe("Live collection", function(){
 		var collection = new LiveCollection.MutableCollection(data);
 		expect(collection.values()).toEqual(data);});
 
+	it("gives a separate data set when retrieving the values.", function(){
+		var data = [1, 4, -2];
+		var collection = new LiveCollection.MutableCollection(data);
+		var values1 = collection.values();
+		var values2 = collection.values();
+		values1.push(3);
+		expect(values1).not.toEqual(values2);
+		expect(values1).not.toEqual(data);});
+
 	it("can be extended with methods.", function(){
 
 		function length(){

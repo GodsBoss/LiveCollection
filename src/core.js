@@ -1,9 +1,12 @@
 var LiveCollection = (function(){
 	var lib = {};
 
+	function copy(array){
+		return array.slice();}
+
 	function MutableCollection(data){
 		this.values = function(){
-			return data;};}
+			return copy(data);};}
 
 	lib.MutableCollection = MutableCollection;
 
