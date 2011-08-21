@@ -35,7 +35,20 @@ var Collection = (function(){
 			return data.shift();};
 
 		this.set = function(index, item){
-			data[index] = item;};}
+			data[index] = item;};
+
+		this.filter = function(condition){
+			return new Filtered(data, condition);};}
+
+	function Filtered(data, condition){
+		this.item = function(index){
+			return data.filter(condition)[index];};
+
+		this.length = function(){
+			return data.filter(condition).length;};
+
+		this.isEmpty = function(){
+			return !data.filter(condition).length;};}
 
 	lib.createMutable = function(data){
 		return new Mutable(data);};

@@ -160,5 +160,41 @@ describe("Mutable collection", function(){
 				function settingItem(collection){
 					collection.set(1, Math.random());}
 
-				checkIfDataSetIsUnchangedBy(settingItem);});});});});
+				checkIfDataSetIsUnchangedBy(settingItem);});});});
+
+	describe("Live derivations", function(){
+
+		describe("Filtered collection", function(){
+
+			function isEven(n){
+				return !(n%2);}
+
+			it("contains only those items which satisfy the condition.", function(){
+				var numbers = Collection.createMutable([1, 4, 2, -3, 5, -1, 0]);
+				var evenNumbers = numbers.filter(isEven);
+				expect(evenNumbers.item(0)).toEqual(4);
+				expect(evenNumbers.item(1)).toEqual(2);
+				expect(evenNumbers.item(2)).toEqual(0);
+				expect(evenNumbers.item(3)).toBeUndefined();});
+
+			it("is live, i.e. it changes if new items are added to the original collection.", function(){
+				var numbers = Collection.createMutable([1, 2, 8]);
+				var evenNumbers = numbers.filter(isEven);
+				numbers.unshift(6);
+				expect(evenNumbers.item(0)).toEqual(6);});
+
+			it("has a length according to the number of filtered items.", function(){
+				var filtered = Collection.createMutable([1, 4, 2, 7, 4]).filter(isEven);
+				expect(filtered.length()).toEqual(3);});
+
+			it("is empty if no items satisfied the filter condition.", function(){
+				var filtered = Collection.createMutable([1, 7, 9, 5, 3]).filter(isEven);
+				expect(filtered.isEmpty()).toBeTruthy();});
+
+			it("is non-empty if some items satisfied the filter condition.", function(){
+				var filtered = Collection.createMutable([8, 3, 4, 2, 1]);
+				expect(filtered.isEmpty()).toBeFalsy();});
+		});
+	});
+});
 
