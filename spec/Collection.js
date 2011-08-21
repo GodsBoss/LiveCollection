@@ -96,6 +96,9 @@ describe("Mutable collection", function(){
 				expect(lastItem).toEqual(8);
 				expect(collection.length()).toEqual(2);});
 
+			it("returns undefined for an empty collection.", function(){
+				expect(Collection.createMutable().pop()).toBeUndefined();});
+
 			it("does not manipulate the underlying data set.", function(){
 
 				function poppingItem(collection){
@@ -110,6 +113,9 @@ describe("Mutable collection", function(){
 				var firstItem = collection.shift();
 				expect(firstItem).toEqual(3);
 				expect(collection.length()).toEqual(2);});
+
+			it("returns undefined for an empty collection.", function(){
+				expect(Collection.createMutable().shift()).toBeUndefined();});
 
 			it("does not manipulate the underlying data set.", function(){
 
