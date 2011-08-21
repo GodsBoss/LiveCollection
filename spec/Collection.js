@@ -48,7 +48,17 @@ describe("Mutable collection", function(){
 				var collection = Collection.createMutable([3, 7, -2]);
 				expect(collection.item(0)).toEqual(3);
 				expect(collection.item(1)).toEqual(7);
-				expect(collection.item(2)).toEqual(-2);});});});
+				expect(collection.item(2)).toEqual(-2);});});
+
+		describe("Last item", function(){
+
+			it("can be retrieved.", function(){
+				expect(Collection.createMutable([6, -2, 5, 3]).lastItem()).toEqual(3);});
+
+			it("is undefined for an empty collection.", function(){
+				expect(Collection.createMutable().lastItem()).toBeUndefined();});});
+
+	});
 
 	describe("Manipulation", function(){
 

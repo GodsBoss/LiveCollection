@@ -16,6 +16,9 @@ var Collection = (function(){
 		this.item = function(index){
 			return data[index];};
 
+		this.lastItem = function(){
+			return data[data.length-1];};
+
 		this.push = function(item){
 			data.push(item);};
 
