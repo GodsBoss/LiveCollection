@@ -16,10 +16,10 @@ var Collection = (function(){
 		this.item = function(index){
 			return data[index];};
 
-		this.append = function(item){
+		this.push = function(item){
 			data.push(item);};
 
-		this.prepend = function(item){
+		this.unshift = function(item){
 			data.unshift(item);};
 
 		this.set = function(index, item){

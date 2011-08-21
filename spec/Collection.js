@@ -46,25 +46,25 @@ describe("Mutable collection", function(){
 
 		it("appends items.", function(){
 			var collection = Collection.createMutable();
-			collection.append(5);
+			collection.push(5);
 			expect(collection.isEmpty()).toBeFalsy();
 			expect(collection.length()).toEqual(1);
 			expect(collection.item(0)).toEqual(5);});
 
 		it("appends items at the end.", function(){
 			var collection = Collection.createMutable([2, 3]);
-			collection.append(5);
+			collection.push(5);
 			expect(collection.item(2)).toEqual(5);});
 
 		it("does not manipulate the underlying data set.", function(){
 			var data = [1, 2];
 			var collection = Collection.createMutable(data);
-			collection.append(3);
+			collection.push(3);
 			expect(data.length).toEqual(2);});
 
 		it("prepends items.", function(){
 			var collection = Collection.createMutable([2, 4]);
-			collection.prepend(6);
+			collection.unshift(6);
 			expect(collection.length()).toEqual(3);
 			expect(collection.item(0)).toEqual(6);
 			expect(collection.item(1)).toEqual(2);});
