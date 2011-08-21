@@ -58,7 +58,13 @@ describe("Mutable collection", function(){
 			it("is undefined for an empty collection.", function(){
 				expect(Collection.createMutable().lastItem()).toBeUndefined();});});
 
-	});
+		describe("First item", function(){
+
+			it("can be retrieved.", function(){
+				expect(Collection.createMutable([3, 8, -2, 1]).firstItem()).toEqual(3);});
+
+			it("is undefined for an empty collection.", function(){
+				expect(Collection.createMutable().firstItem()).toBeUndefined();});});});
 
 	describe("Manipulation", function(){
 
