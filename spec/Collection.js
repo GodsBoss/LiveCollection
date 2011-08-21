@@ -1,46 +1,54 @@
 describe("Mutable collection", function(){
 
-	describe("containing no data", function(){
+	describe("Access", function(){
 
-		it("is empty.", function(){
-			var collection = Collection.createMutable();
-			expect(collection.isEmpty()).toBeTruthy();});
+		describe("Collection containing no data", function(){
 
-		it("has a length of zero.", function(){
-			var collection = Collection.createMutable();
-			expect(collection.length()).toEqual(0);});});
+			it("is empty.", function(){
+				var collection = Collection.createMutable();
+				expect(collection.isEmpty()).toBeTruthy();});
 
-	describe("containing an empty data set", function(){
+			it("has a length of zero.", function(){
+				var collection = Collection.createMutable();
+				expect(collection.length()).toEqual(0);});});
 
-		it("is empty.", function(){
-			var collection = Collection.createMutable([]);
-			expect(collection.isEmpty()).toBeTruthy();});
+		describe("Collection containing an empty data set", function(){
 
-		it("has a length of zero.", function(){
-			var collection = Collection.createMutable([]);
-			expect(collection.length()).toEqual(0);});});
+			it("is empty.", function(){
+				var collection = Collection.createMutable([]);
+				expect(collection.isEmpty()).toBeTruthy();});
 
-	describe("containing a one-item data set", function(){
+			it("has a length of zero.", function(){
+				var collection = Collection.createMutable([]);
+				expect(collection.length()).toEqual(0);});});
 
-		it("is not empty.", function(){
-			var collection = Collection.createMutable([5]);
-			expect(collection.isEmpty()).toBeFalsy();});
+		describe("Collection containing a one-item data set", function(){
 
-		it("has a length of one.", function(){
-			var collection = Collection.createMutable([5]);
-			expect(collection.length()).toEqual(1);});
+			it("is not empty.", function(){
+				var collection = Collection.createMutable([5]);
+				expect(collection.isEmpty()).toBeFalsy();});
 
-		it("can return that item.", function(){
-			var collection = Collection.createMutable([5]);
-			expect(collection.item(0)).toEqual(5);});});
+			it("has a length of one.", function(){
+				var collection = Collection.createMutable([5]);
+				expect(collection.length()).toEqual(1);});
 
-	describe("containing a few data items", function(){
+			it("can return that item.", function(){
+				var collection = Collection.createMutable([5]);
+				expect(collection.item(0)).toEqual(5);});});
 
-		it("returns an item corresponding to its index.", function(){
-			var collection = Collection.createMutable([3, 7, -2]);
-			expect(collection.item(0)).toEqual(3);
-			expect(collection.item(1)).toEqual(7);
-			expect(collection.item(2)).toEqual(-2);});});
+		describe("Collection containing a few data items", function(){
+
+			it("has a length corresponding to the number of items.", function(){
+				expect(Collection.createMutable([3, -12, 5]).length()).toEqual(3);});
+
+			it("is not empty.", function(){
+				expect(Collection.createMutable([3, 7]).isEmpty()).toBeFalsy();});
+
+			it("returns an item corresponding to its index.", function(){
+				var collection = Collection.createMutable([3, 7, -2]);
+				expect(collection.item(0)).toEqual(3);
+				expect(collection.item(1)).toEqual(7);
+				expect(collection.item(2)).toEqual(-2);});});});
 
 	describe("Manipulation", function(){
 
