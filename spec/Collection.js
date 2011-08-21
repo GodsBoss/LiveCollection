@@ -44,6 +44,13 @@ describe("Mutable collection", function(){
 
 	describe("Manipulation", function(){
 
+		function checkIfDataSetIsUnchangedBy(action){
+			var data = [2, 8, 4];
+			var collection = Collection.createMutable(data);
+			action(collection);
+			expect(data.length).toEqual(3);
+			expect(data).toEqual([2, 8, 4]);}
+
 		describe("appending item", function(){
 
 			it("sets the first item if the data set is empty.", function(){
@@ -59,10 +66,11 @@ describe("Mutable collection", function(){
 				expect(collection.item(2)).toEqual(5);});
 
 			it("does not manipulate the underlying data set.", function(){
-				var data = [1, 2];
-				var collection = Collection.createMutable(data);
-				collection.push(3);
-				expect(data.length).toEqual(2);});});
+
+				function pushingItem(collection){
+					collection.push(3);}
+
+				checkIfDataSetIsUnchangedBy(pushingItem);});});
 
 		describe("prepending item", function(){
 
@@ -71,7 +79,14 @@ describe("Mutable collection", function(){
 				collection.unshift(6);
 				expect(collection.length()).toEqual(3);
 				expect(collection.item(0)).toEqual(6);
-				expect(collection.item(1)).toEqual(2);});});
+				expect(collection.item(1)).toEqual(2);});
+
+			it("does not manipulate the underlying data set.", function(){
+
+				function unshiftingItem(collection){
+					collection.unshift(3);}
+
+				checkIfDataSetIsUnchangedBy(unshiftingItem);});});
 
 		describe("removing last item", function(){
 
@@ -79,7 +94,14 @@ describe("Mutable collection", function(){
 				var collection = Collection.createMutable([3, 1, 8]);
 				var lastItem = collection.pop();
 				expect(lastItem).toEqual(8);
-				expect(collection.length()).toEqual(2);});});
+				expect(collection.length()).toEqual(2);});
+
+			it("does not manipulate the underlying data set.", function(){
+
+				function poppingItem(collection){
+					collection.pop();}
+
+				checkIfDataSetIsUnchangedBy(poppingItem);});});
 
 		describe("removing first item", function(){
 
@@ -87,12 +109,26 @@ describe("Mutable collection", function(){
 				var collection = Collection.createMutable([3, 1, 8]);
 				var firstItem = collection.shift();
 				expect(firstItem).toEqual(3);
-				expect(collection.length()).toEqual(2);});});
+				expect(collection.length()).toEqual(2);});
+
+			it("does not manipulate the underlying data set.", function(){
+
+				function shiftingItem(collection){
+					collection.shift();}
+
+				checkIfDataSetIsUnchangedBy(shiftingItem);});});
 
 		describe("setting item", function(){
 
 			it("sets items.", function(){
 				var collection = Collection.createMutable([1, 3, 5]);
 				collection.set(1, 4);
-				expect(collection.item(1)).toEqual(4);});});});});
+				expect(collection.item(1)).toEqual(4);});
+
+			it("does not manipulate the underlying data set.", function(){
+
+				function settingItem(collection){
+					collection.set(1, Math.random());}
+
+				checkIfDataSetIsUnchangedBy(settingItem);});});});});
 
