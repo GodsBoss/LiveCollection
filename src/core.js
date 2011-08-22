@@ -31,10 +31,10 @@ var LiveCollection = (function(){
 			return this._mutate(mutator, arguments);};};
 
 	lib.addTransformer = function(name, transform){
-		MutableCollection.prototype[name] = function(){
+		var f = function(){
 			return new ReadOnlyCollection(this, transform, arguments);};
-		ReadOnlyCollection.prototype[name] = function(){
-			return new ReadOnlyCollection(this, transform, arguments);}};
+		MutableCollection.prototype[name] = f;
+		ReadOnlyCollection.prototype[name] = f;};
 
 	return lib;})();
 
