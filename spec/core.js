@@ -155,5 +155,31 @@ describe("Mutable collection", function(){
 		var collection = new LiveCollection.MutableCollection([]);
 		var readOnlyCollection = collection.transformerStoringArguments.apply(collection, argumentsToBeStored);
 		readOnlyCollection.values();
-		expect(storedArguments).toEqual(argumentsToBeStored);});});
+		expect(storedArguments).toEqual(argumentsToBeStored);});
+
+	it("extends the readonly collections with methods as well.", function(){
+		var argumentsToBeStored = [5, 2, -1];
+		var valuesToBeStored = [1, -9, 0];
+		var valueToBeReturned = 'foobar';
+		var storedArguments;
+		var storedValues;
+
+		function readOnlyMethodExtension(){
+			storedArguments = arguments;
+			storedValues = this.values();
+			return valueToBeReturned;}
+
+		function identityTransform(){
+			return valuesToBeStored;}
+
+		LiveCollection.addTransformer('identityTransform', identityTransform);
+		LiveCollection.addMethod('readOnlyMethodExtension', readOnlyMethodExtension);
+
+		var collection = new LiveCollection.MutableCollection([]);
+		var readOnlyCollection = collection.identityTransform();
+		expect(readOnlyCollection.readOnlyMethodExtension.apply(readOnlyCollection, argumentsToBeStored)).toEqual(valueToBeReturned);
+		expect(storedArguments).toEqual(argumentsToBeStored);
+		expect(storedValues).toEqual(valuesToBeStored);});
+
+});
 

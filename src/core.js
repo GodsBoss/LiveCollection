@@ -22,6 +22,8 @@ var LiveCollection = (function(){
 
 	lib.addMethod = function(name, method){
 		MutableCollection.prototype[name] = function(){
+			return method.apply(this, arguments);};
+		ReadOnlyCollection.prototype[name] = function(){
 			return method.apply(this, arguments);};};
 
 	lib.addMutator = function(name, mutator){
