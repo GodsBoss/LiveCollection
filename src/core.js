@@ -21,10 +21,10 @@ var LiveCollection = (function(){
 	lib.ReadOnlyCollection = ReadOnlyCollection;
 
 	lib.addMethod = function(name, method){
-		MutableCollection.prototype[name] = function(){
-			return method.apply(this, arguments);};
-		ReadOnlyCollection.prototype[name] = function(){
-			return method.apply(this, arguments);};};
+		var f = function (){
+			return method.apply(this, arguments);}
+		MutableCollection.prototype[name] = f;
+		ReadOnlyCollection.prototype[name] = f;};
 
 	lib.addMutator = function(name, mutator){
 		MutableCollection.prototype[name] = function(){
