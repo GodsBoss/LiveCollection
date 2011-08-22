@@ -4,7 +4,8 @@ Live Collection
 Overview
 --------
 
-The LiveCollection library is splitted into a core and a set of basic extensions.
+The LiveCollection library is splitted into a core and a set of basic
+extensions.
 
 Creating mutable live collections
 ---------------------------------
@@ -28,6 +29,15 @@ Extending collections with methods
 
 Adds a method to collections. A method is called with the context of the
 collection, so `this.values()` returns the values wrapped by the collection.
+
+### `LiveCollection.addMutator(name, mutate)`
+
+Adds a mutator to the mutable collection (but not the readonly collections).
+
+### `LiveCollection.addTransformer(name, transform)`
+
+Adds a transformer to both mutable and readonly collections. A transformer is
+a function which is used to create the values of a readonly collection.
 
 License
 -------
