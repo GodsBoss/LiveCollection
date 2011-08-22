@@ -8,8 +8,10 @@ var LiveCollection = (function(){
 		this.values = function(){
 			return copy(data);};
 
-		this._mutate = function(mutator){
-			mutator.call(this, data);};}
+		this._mutate = function(mutator, args){
+			args = Array.prototype.slice.call(args);
+			args.unshift(data);
+			mutator.apply(this, args);};}
 
 	lib.MutableCollection = MutableCollection;
 
@@ -19,7 +21,7 @@ var LiveCollection = (function(){
 
 	lib.addMutator = function(name, mutator){
 		MutableCollection.prototype[name] = function(){
-			this._mutate(mutator);};};
+			this._mutate(mutator, arguments);};};
 
 	return lib;})();
 

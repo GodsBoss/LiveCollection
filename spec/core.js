@@ -81,5 +81,18 @@ describe("Live collection", function(){
 		collection.change();
 		expect(collection.values()).toEqual(valuesAfterChange);});
 
+	it("calls mutators with the given arguments.", function(){
+		var argumentsToBeStored = [-2, 5, 0, 3];
+		var storedArguments;
+
+		function storeArguments(){
+			storedArguments = Array.prototype.slice.call(arguments, 1);}
+
+		LiveCollection.addMutator('mutatorStoringArguments', storeArguments);
+
+		var collection = new LiveCollection.MutableCollection([]);
+		collection.mutatorStoringArguments.apply(collection, argumentsToBeStored);
+		expect(storedArguments).toEqual(argumentsToBeStored);});
+
 });
 
