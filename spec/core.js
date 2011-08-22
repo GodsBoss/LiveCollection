@@ -1,4 +1,4 @@
-describe("Live collection", function(){
+describe("Mutable collection", function(){
 
 	it("can be instantiated directly.", function(){
 		var collection = new LiveCollection.MutableCollection([]);});
@@ -103,5 +103,57 @@ describe("Live collection", function(){
 		LiveCollection.addMutator('mutatorReturningValue', returnValue);
 
 		var collection = new LiveCollection.MutableCollection([]);
-		expect(collection.mutatorReturningValue()).toEqual(valueToBeReturned);});});
+		expect(collection.mutatorReturningValue()).toEqual(valueToBeReturned);});
+
+	it("can be extended with transformers, which return readonly collections.", function(){
+
+		function empty(){
+			return [];}
+
+		LiveCollection.addTransformer('empty', empty);
+
+		var collection = new LiveCollection.MutableCollection([]);
+		var readOnlyView = collection.empty();
+		expect(readOnlyView instanceof LiveCollection.ReadOnlyCollection).toBeTruthy();});
+
+	it("lets the readonly collection have the values returned by the transformation function.", function(){
+		var transformReturnValues = [-8, 7, 5];
+
+		function returnValues(){
+			return transformReturnValues;}
+
+		LiveCollection.addTransformer('transformerReturningValues', returnValues);
+
+		var collection = new LiveCollection.MutableCollection([]);
+		var readOnlyCollection = collection.transformerReturningValues();
+		expect(readOnlyCollection.values());});
+
+	it("lets a readonly collection have access to the values of the wrapped collection.", function(){
+		var collectionValues = [1, -2, 9, -1];
+		var storedValues;
+
+		function storeValues(){
+			storedValues = this.values();
+			return [];}
+
+		LiveCollection.addTransformer('transformerStoringValues', storeValues);
+
+		var collection = new LiveCollection.MutableCollection(collectionValues);
+		var readOnlyCollection = collection.transformerStoringValues();
+		readOnlyCollection.values();
+		expect(storedValues).toEqual(collectionValues);});
+
+	it("calls the transformer with the given arguments.", function(){
+		var argumentsToBeStored = [0, 5, 3, -1];
+		var storedArguments;
+
+		function storeArguments(){
+			storedArguments = arguments;}
+
+		LiveCollection.addTransformer('transformerStoringArguments', storeArguments);
+
+		var collection = new LiveCollection.MutableCollection([]);
+		var readOnlyCollection = collection.transformerStoringArguments.apply(collection, argumentsToBeStored);
+		readOnlyCollection.values();
+		expect(storedArguments).toEqual(argumentsToBeStored);});});
 

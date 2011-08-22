@@ -13,7 +13,12 @@ var LiveCollection = (function(){
 			args.unshift(data);
 			return mutator.apply(this, args);};}
 
+	function ReadOnlyCollection(collection, transform, args){
+		this.values = function(){
+			return transform.apply(collection, args);};}
+
 	lib.MutableCollection = MutableCollection;
+	lib.ReadOnlyCollection = ReadOnlyCollection;
 
 	lib.addMethod = function(name, method){
 		MutableCollection.prototype[name] = function(){
@@ -22,6 +27,10 @@ var LiveCollection = (function(){
 	lib.addMutator = function(name, mutator){
 		MutableCollection.prototype[name] = function(){
 			return this._mutate(mutator, arguments);};};
+
+	lib.addTransformer = function(name, transform){
+		MutableCollection.prototype[name] = function(){
+			return new ReadOnlyCollection(this, transform, arguments);};};
 
 	return lib;})();
 
