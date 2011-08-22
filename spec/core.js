@@ -64,5 +64,22 @@ describe("Live collection", function(){
 
 		var collection = new LiveCollection.MutableCollection(valuesInCollection);
 		collection.storeValues();
-		expect(valuesViaThisInMethod).toEqual(valuesInCollection);});});
+		expect(valuesViaThisInMethod).toEqual(valuesInCollection);});
+
+	it("can be extended with a mutator, changing the data set.", function(){
+
+		function change(data){
+			data[1] = 5;}
+
+		var valuesInCollection = [1, 3, 4];
+		var valuesAfterChange  = valuesInCollection.slice();
+		change(valuesAfterChange);
+
+		LiveCollection.addMutator('change', change);
+
+		var collection = new LiveCollection.MutableCollection(valuesInCollection);
+		collection.change();
+		expect(collection.values()).toEqual(valuesAfterChange);});
+
+});
 
