@@ -32,7 +32,9 @@ var LiveCollection = (function(){
 
 	lib.addTransformer = function(name, transform){
 		MutableCollection.prototype[name] = function(){
-			return new ReadOnlyCollection(this, transform, arguments);};};
+			return new ReadOnlyCollection(this, transform, arguments);};
+		ReadOnlyCollection.prototype[name] = function(){
+			return new ReadOnlyCollection(this, transform, arguments);}};
 
 	return lib;})();
 

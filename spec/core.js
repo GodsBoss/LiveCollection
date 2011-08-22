@@ -169,17 +169,40 @@ describe("Mutable collection", function(){
 			storedValues = this.values();
 			return valueToBeReturned;}
 
-		function identityTransform(){
+		function testTransform(){
 			return valuesToBeStored;}
 
-		LiveCollection.addTransformer('identityTransform', identityTransform);
+		LiveCollection.addTransformer('testTransform', testTransform);
 		LiveCollection.addMethod('readOnlyMethodExtension', readOnlyMethodExtension);
 
 		var collection = new LiveCollection.MutableCollection([]);
-		var readOnlyCollection = collection.identityTransform();
+		var readOnlyCollection = collection.testTransform();
 		expect(readOnlyCollection.readOnlyMethodExtension.apply(readOnlyCollection, argumentsToBeStored)).toEqual(valueToBeReturned);
 		expect(storedArguments).toEqual(argumentsToBeStored);
 		expect(storedValues).toEqual(valuesToBeStored);});
 
-});
+	it("extends the readonly collections with transformers as well.", function(){
+		var argumentsToBeStored = [0, 5, -7, 2];
+		var valuesToBeStored = [3, -1, -1, 9];
+		var valuesToBeReturned = [1, 2, 3];
+		var storedArguments;
+		var storedValues;
+
+		function firstTransform(){
+			return valuesToBeStored;}
+
+		function readOnlyTransform(){
+			storedArguments = arguments;
+			storedValues = this.values();
+			return valuesToBeReturned;}
+
+		LiveCollection.addTransformer('firstTransform', firstTransform);
+		LiveCollection.addTransformer('readOnlyTransform', readOnlyTransform);
+
+		var collection = new LiveCollection.MutableCollection([]);
+		var readOnlyCollection = collection.firstTransform();
+		var realReadOnlyCollection = readOnlyCollection.readOnlyTransform.apply(readOnlyCollection, argumentsToBeStored);
+		expect(realReadOnlyCollection.values()).toEqual(valuesToBeReturned);
+		expect(storedArguments).toEqual(argumentsToBeStored);
+		expect(storedValues).toEqual(valuesToBeStored);});});
 
