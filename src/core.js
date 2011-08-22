@@ -20,21 +20,21 @@ var LiveCollection = (function(){
 	lib.MutableCollection = MutableCollection;
 	lib.ReadOnlyCollection = ReadOnlyCollection;
 
+	function addToPrototypes(name, func){
+		MutableCollection.prototype[name] = func;
+		ReadOnlyCollection.prototype[name] = func;}
+
 	lib.addMethod = function(name, method){
-		var f = function (){
-			return method.apply(this, arguments);}
-		MutableCollection.prototype[name] = f;
-		ReadOnlyCollection.prototype[name] = f;};
+		addToPrototypes(name, function (){
+			return method.apply(this, arguments);});};
 
 	lib.addMutator = function(name, mutator){
 		MutableCollection.prototype[name] = function(){
 			return this._mutate(mutator, arguments);};};
 
 	lib.addTransformer = function(name, transform){
-		var f = function(){
-			return new ReadOnlyCollection(this, transform, arguments);};
-		MutableCollection.prototype[name] = f;
-		ReadOnlyCollection.prototype[name] = f;};
+		addToPrototypes(name, function(){
+			return new ReadOnlyCollection(this, transform, arguments);});};
 
 	return lib;})();
 
