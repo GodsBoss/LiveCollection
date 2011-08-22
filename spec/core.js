@@ -85,7 +85,7 @@ describe("Live collection", function(){
 		var argumentsToBeStored = [-2, 5, 0, 3];
 		var storedArguments;
 
-		function storeArguments(){
+		function storeArguments(data){
 			storedArguments = Array.prototype.slice.call(arguments, 1);}
 
 		LiveCollection.addMutator('mutatorStoringArguments', storeArguments);
@@ -94,5 +94,14 @@ describe("Live collection", function(){
 		collection.mutatorStoringArguments.apply(collection, argumentsToBeStored);
 		expect(storedArguments).toEqual(argumentsToBeStored);});
 
-});
+	it("returns the value a mutator returns.", function(){
+		var valueToBeReturned = 'foo';
+
+		function returnValue(data){
+			return valueToBeReturned;}
+
+		LiveCollection.addMutator('mutatorReturningValue', returnValue);
+
+		var collection = new LiveCollection.MutableCollection([]);
+		expect(collection.mutatorReturningValue()).toEqual(valueToBeReturned);});});
 
