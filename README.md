@@ -39,6 +39,37 @@ Adds a mutator to the mutable collection (but not the readonly collections).
 Adds a transformer to both mutable and readonly collections. A transformer is
 a function which is used to create the values of a readonly collection.
 
+Standard extensions
+-------------------
+
+### Mutators
+
+#### `pop()`
+
+Removes the last item of the collection and returns it. If no such item
+exists, `undefined` is returned.
+
+#### `shift()`
+
+Removes the first item of the collection and returns it. If no such item
+exists, `undefined` is returned.
+
+#### `push(item)`
+
+Adds `item` at the end of the collection and returns the number of items in
+the collection.
+
+#### `unshift(item)`
+
+Adds `item` to the beginning of the collection and returns the number of items
+in the collection.
+
+#### `set(index, value)`
+
+Sets the value of the `index`th item of the collection to the value `value`.
+Throws an error, if `index` is below zero or is greater than the index of the
+last item.
+
 License
 -------
 
