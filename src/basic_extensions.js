@@ -20,6 +20,9 @@
 		data[index] = value;
 		return value;});
 
+	LiveCollection.addMutator('clear', function(data){
+		data.length = 0;});
+
 	LiveCollection.addMethod('length', function(){
 		return this.values().length;});
 

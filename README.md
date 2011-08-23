@@ -70,6 +70,10 @@ Sets the value of the `index`th item of the collection to the value `value`.
 Throws an error, if `index` is below zero or is greater than the index of the
 last item.
 
+#### `clear()`
+
+Removes all items from the collection.
+
 ### Methods
 
 #### `length()`

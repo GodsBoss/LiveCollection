@@ -86,7 +86,13 @@ describe('Standard mutator extensions', function(){
 			function setIndexWhichIsTooHigh(){
 				collectionWithValues.set(values.length, -3);}
 
-			expect(setIndexWhichIsTooHigh).toThrow('Index too high.');});});});
+			expect(setIndexWhichIsTooHigh).toThrow('Index too high.');});});
+
+	describe('Clear', function(){
+
+		it('clears the collection from all elements.', function(){
+			collectionWithValues.clear();
+			expect(collectionWithValues.values()).toEqual([]);});});});
 
 describe('Standard method extensions', function(){
 
