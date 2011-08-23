@@ -12,19 +12,19 @@
 	LiveCollection.addMutator('shift', function(data){
 		return data.shift();});
 
-	LiveCollection.addMutator('set', function(data, index, value){
+	function throwErrorIfIndexNotExistent(data, index){
 		if (index<0){
 			throw new Error('Index too low.');}
 		if (index>=data.length){
-			throw new Error('Index too high.');}
+			throw new Error('Index too high.');}}
+
+	LiveCollection.addMutator('set', function(data, index, value){
+		throwErrorIfIndexNotExistent(data, index);
 		data[index] = value;
 		return value;});
 
 	LiveCollection.addMutator('remove', function(data, index){
-		if (index<0){
-			throw new Error('Index too low.');}
-		if (index>=data.length){
-			throw new Error('Index too high.');}
+		throwErrorIfIndexNotExistent(data, index);
 		for(var i=index;i<data.length-1;i++){
 			data[i]=data[i+1];}
 		data.length = data.length-1;});
