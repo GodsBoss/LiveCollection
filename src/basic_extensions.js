@@ -20,5 +20,8 @@
 		data[index] = value;
 		return value;});
 
+	LiveCollection.addMethod('length', function(){
+		return this.values().length;});
+
 })(LiveCollection);
 
