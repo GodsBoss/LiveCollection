@@ -120,7 +120,30 @@ describe('Standard mutator extensions', function(){
 		it('inserts an item at the beginning if the position is smaller than 0.', function(){
 			var collection = new LiveCollection.MutableCollection([8, 5, 2]);
 			collection.insertAfter(-2, 1);
-			expect(collection.values()).toEqual([1, 8, 5, 2]);});});});
+			expect(collection.values()).toEqual([1, 8, 5, 2]);});});
+
+	describe('Remove', function(){
+
+		it('removes an item.', function(){
+			var collection = new LiveCollection.MutableCollection([1, 0, 5, -2]);
+			collection.remove(2);
+			expect(collection.values()).toEqual([1, 0, -2]);});
+
+		it('throws an error if the index is lower than zero.', function(){
+			var collection = new LiveCollection.MutableCollection([7, 5, 3]);
+
+			function removeItemWithAnIndexLowerZero(){
+				collection.remove(-2);}
+
+			expect(removeItemWithAnIndexLowerZero).toThrow('Index too low.');});
+
+		it('throws an error if the index is higher than the index of the last element.', function(){
+			var collection = new LiveCollection.MutableCollection([0, -5, 2]);
+
+			function removeItemWithAnIndexTooHigh(){
+				collection.remove(3);}
+
+			expect(removeItemWithAnIndexTooHigh).toThrow('Index too high.');});});});
 
 	describe('Clear', function(){
 

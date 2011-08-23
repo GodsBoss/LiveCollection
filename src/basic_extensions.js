@@ -20,6 +20,15 @@
 		data[index] = value;
 		return value;});
 
+	LiveCollection.addMutator('remove', function(data, index){
+		if (index<0){
+			throw new Error('Index too low.');}
+		if (index>=data.length){
+			throw new Error('Index too high.');}
+		for(var i=index;i<data.length-1;i++){
+			data[i]=data[i+1];}
+		data.length = data.length-1;});
+
 	LiveCollection.addMutator('clear', function(data){
 		data.length = 0;});
 
