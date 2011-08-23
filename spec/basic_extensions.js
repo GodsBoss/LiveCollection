@@ -95,8 +95,5 @@ describe('Standard method extensions', function(){
 		it('returns the number of items in the collection.', function(){
 			var values = [1, -2, 15, 0, 3, -4, 8];
 			var collection = new LiveCollection.MutableCollection(values);
-			expect(collection.length()).toEqual(values.length);});
-
-	});
-});
+			expect(collection.length()).toEqual(values.length);});});});
 
