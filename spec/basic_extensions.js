@@ -160,3 +160,32 @@ describe('Standard method extensions', function(){
 			var collection = new LiveCollection.MutableCollection(values);
 			expect(collection.length()).toEqual(values.length);});});});
 
+describe('Standard transformer extensions', function(){
+
+	describe('Head', function(){
+
+		it('takes a number of items from the beginning of the collection.', function(){
+			var values = [4, 0, 3, -2, 5, 1, -9];
+			var collection = new LiveCollection.MutableCollection(values);
+			expect(collection.head(3).values()).toEqual(values.slice(0, 3));});
+
+		it('returns all items if the number to be taken is greater than the number of elements.', function(){
+			var values = [5, -2, 1];
+			var collection = new LiveCollection.MutableCollection(values);
+			expect(collection.head(7).values()).toEqual(values);});});
+
+	describe('Tail', function(){
+
+		it('takes a number of items from the end of the collection.', function(){
+			var values = [8, 5, -3, 9, 2, 0];
+			var collection = new LiveCollection.MutableCollection(values);
+			expect(collection.tail(4).values()).toEqual([-3, 9, 2, 0]);});
+
+		it('returns all items if the number to be taken is greater than the number of elements.', function(){
+			var values = [0, 2, 6];
+			var collection = new LiveCollection.MutableCollection(values);
+			expect(collection.tail(6).values()).toEqual(values);});
+
+	});
+});
+

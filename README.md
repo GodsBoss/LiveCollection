@@ -97,6 +97,18 @@ added after all other elements.
 
 Returns the number of items within the collection.
 
+### Transformers
+
+#### `head(n)`
+
+Returns the first `n` items of the collection or all, if `n` is greater than
+the number of items.
+
+#### `tail(n)`
+
+Returns the last `n` items of the collection or all, if `n` is greater than
+the number of items.
+
 License
 -------
 

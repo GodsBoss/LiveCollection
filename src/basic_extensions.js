@@ -47,5 +47,11 @@
 	LiveCollection.addMethod('length', function(){
 		return this.values().length;});
 
+	LiveCollection.addTransformer('head', function(n){
+		return this.values().slice(0, n);});
+
+	LiveCollection.addTransformer('tail', function(n){
+		return this.values().slice(this.values().length-n);});
+
 })(LiveCollection);
 
