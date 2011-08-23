@@ -74,6 +74,18 @@ last item.
 
 Removes all items from the collection.
 
+#### `insertBefore(index, item)`
+
+Inserts `item` before the element with the index `index`. If `index` is too
+low, `item` is added before all other elements, if it is too high, `item` is
+added after all other elements.
+
+#### `insertAfter(index, item)`
+
+Inserts `item` after the element with the index `index`. If `index` is too
+low, `item` is added before all other elements, if it is too high, `item` is
+added after all other elements.
+
 ### Methods
 
 #### `length()`

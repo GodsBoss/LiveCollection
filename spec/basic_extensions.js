@@ -86,7 +86,41 @@ describe('Standard mutator extensions', function(){
 			function setIndexWhichIsTooHigh(){
 				collectionWithValues.set(values.length, -3);}
 
-			expect(setIndexWhichIsTooHigh).toThrow('Index too high.');});});
+			expect(setIndexWhichIsTooHigh).toThrow('Index too high.');});
+
+	describe('insertBefore', function(){
+
+		it('inserts an item before another item.', function(){
+			var collection = new LiveCollection.MutableCollection([1, 5, -2, 3]);
+			collection.insertBefore(2, 6);
+			expect(collection.values()).toEqual([1, 5, 6, -2, 3]);});
+
+		it('inserts an item at the end if the position is greater than the index of the last element.', function(){
+			var collection = new LiveCollection.MutableCollection([-4, 3, 0, 2]);
+			collection.insertBefore(20, 5);
+			expect(collection.values()).toEqual([-4, 3, 0, 2, 5]);});
+
+		it('inserts an item at the beginning if the position is smaller than 0.', function(){
+			var collection = new LiveCollection.MutableCollection([3, 0, 5]);
+			collection.insertBefore(-3, 1);
+			expect(collection.values()).toEqual([1, 3, 0, 5]);});});
+
+	describe('insertAfter', function(){
+
+		it('inserts an item after another item.', function(){
+			var collection = new LiveCollection.MutableCollection([3, 0, 6, 1]);
+			collection.insertAfter(1, -8);
+			expect(collection.values()).toEqual([3, 0, -8, 6, 1]);});
+
+		it('inserts an item at the end if the position is greater than the index of the last element.', function(){
+			var collection = new LiveCollection.MutableCollection([4, 0, 9]);
+			collection.insertAfter(6, 3);
+			expect(collection.values()).toEqual([4, 0, 9, 3]);});
+
+		it('inserts an item at the beginning if the position is smaller than 0.', function(){
+			var collection = new LiveCollection.MutableCollection([8, 5, 2]);
+			collection.insertAfter(-2, 1);
+			expect(collection.values()).toEqual([1, 8, 5, 2]);});});});
 
 	describe('Clear', function(){
 
