@@ -184,8 +184,5 @@ describe('Standard transformer extensions', function(){
 		it('returns all items if the number to be taken is greater than the number of elements.', function(){
 			var values = [0, 2, 6];
 			var collection = new LiveCollection.MutableCollection(values);
-			expect(collection.tail(6).values()).toEqual(values);});
-
-	});
-});
+			expect(collection.tail(6).values()).toEqual(values);});});});
 
