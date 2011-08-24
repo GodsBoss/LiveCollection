@@ -86,7 +86,7 @@ describe('Standard mutator extensions', function(){
 			function setIndexWhichIsTooHigh(){
 				collectionWithValues.set(values.length, -3);}
 
-			expect(setIndexWhichIsTooHigh).toThrow('Index too high.');});
+			expect(setIndexWhichIsTooHigh).toThrow('Index too high.');});});
 
 	describe('insertBefore', function(){
 
@@ -143,7 +143,7 @@ describe('Standard mutator extensions', function(){
 			function removeItemWithAnIndexTooHigh(){
 				collection.remove(3);}
 
-			expect(removeItemWithAnIndexTooHigh).toThrow('Index too high.');});});});
+			expect(removeItemWithAnIndexTooHigh).toThrow('Index too high.');});});
 
 	describe('Clear', function(){
 
