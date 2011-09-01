@@ -193,8 +193,5 @@ describe('Standard transformer extensions', function(){
 			var triple = function(x){ return x*3; };
 			var expectedResult = values.map(triple);
 			var collection = new LiveCollection.MutableCollection(values);
-			expect(collection.map(triple).values());});
-
-	});
-});
+			expect(collection.map(triple).values()).toEqual(expectedResult);});});});
 
