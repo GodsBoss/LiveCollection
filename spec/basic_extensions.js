@@ -1,12 +1,12 @@
+function copy(array){
+	return array.slice();}
+
 describe('Standard mutator extensions', function(){
 
 	var emptyCollection;
 	var collectionWithValues;
 
 	var values = [-2, 5, 3, 0, 9];
-
-	function copy(array){
-		return array.slice();}
 
 	beforeEach(function(){
 		emptyCollection = new LiveCollection.MutableCollection([]);
@@ -209,7 +209,7 @@ describe('Standard transformer extensions', function(){
 		it('returns a sorted collection.', function(){
 			var values = [false, true, true, false, true, false];
 			var compare = function(left, right){ return left-right; };
-			var expectedResult = Array.prototype.slice.call(values);
+			var expectedResult = copy(values);
 			expectedResult.sort(compare);
 			var collection = new LiveCollection.MutableCollection(values);
 			expect(collection.sort(compare).values()).toEqual(expectedResult);});});
@@ -218,7 +218,7 @@ describe('Standard transformer extensions', function(){
 
 		it('returns the collection reversed.', function(){
 			var values = [5, 2, 7, -1];
-			var expectedResult = Array.prototype.slice.call(values);
+			var expectedResult = copy(values);
 			expectedResult.reverse();
 			var collection = new LiveCollection.MutableCollection(values);
 			expect(collection.reverse().values()).toEqual(expectedResult);});});});
