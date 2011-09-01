@@ -193,5 +193,14 @@ describe('Standard transformer extensions', function(){
 			var triple = function(x){ return x*3; };
 			var expectedResult = values.map(triple);
 			var collection = new LiveCollection.MutableCollection(values);
-			expect(collection.map(triple).values()).toEqual(expectedResult);});});});
+			expect(collection.map(triple).values()).toEqual(expectedResult);});});
+
+	describe('Filter', function(){
+
+		it('returns a filtered collection containing only the items for which the predicate returned a truthy value.', function(){
+			var values = [9, -3, 2, 5, 0];
+			var odd = function(n){ return n%2; };
+			var expectedResult = values.filter(odd);
+			var collection = new LiveCollection.MutableCollection(values);
+			expect(collection.filter(odd).values()).toEqual(expectedResult);});});});
 

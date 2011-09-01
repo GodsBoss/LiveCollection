@@ -118,6 +118,11 @@ the number of items.
 
 Returns a collection where all items `item` are replaced by `f(item)`.
 
+#### `filter(f)`
+
+Returns a collection containing only the items `item` where `f(item)` is
+trutyh.
+
 License
 -------
 

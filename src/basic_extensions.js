@@ -56,5 +56,8 @@
 	LiveCollection.addTransformer('map', function(f){
 		return this.values().map(f);});
 
+	LiveCollection.addTransformer('filter', function(f){
+		return this.values().filter(f);});
+
 })(LiveCollection);
 
