@@ -7,6 +7,11 @@ Overview
 The LiveCollection library is splitted into a core and a set of basic
 extensions.
 
+Dependencies
+------------
+
+Requires ES5 `Array` methods like `map`, `filter`, etc. Poly fills will do.
+
 Creating mutable live collections
 ---------------------------------
 
@@ -108,6 +113,10 @@ the number of items.
 
 Returns the last `n` items of the collection or all, if `n` is greater than
 the number of items.
+
+#### `map(f)`
+
+Returns a collection where all items `item` are replaced by `f(item)`.
 
 License
 -------

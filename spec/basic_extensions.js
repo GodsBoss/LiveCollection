@@ -184,5 +184,17 @@ describe('Standard transformer extensions', function(){
 		it('returns all items if the number to be taken is greater than the number of elements.', function(){
 			var values = [0, 2, 6];
 			var collection = new LiveCollection.MutableCollection(values);
-			expect(collection.tail(6).values()).toEqual(values);});});});
+			expect(collection.tail(6).values()).toEqual(values);});});
+
+	describe('Map', function(){
+
+		it('returns a collection with the same length but all items are changed according to the function argument.', function(){
+			var values = [-3, 5, 10, -5];
+			var triple = function(x){ return x*3; };
+			var expectedResult = values.map(triple);
+			var collection = new LiveCollection.MutableCollection(values);
+			expect(collection.map(triple).values());});
+
+	});
+});
 

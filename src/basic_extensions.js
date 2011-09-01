@@ -53,5 +53,8 @@
 	LiveCollection.addTransformer('tail', function(n){
 		return this.values().slice(this.values().length-n);});
 
+	LiveCollection.addTransformer('map', function(f){
+		return this.values().map(f);});
+
 })(LiveCollection);
 
