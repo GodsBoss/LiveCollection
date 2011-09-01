@@ -212,5 +212,14 @@ describe('Standard transformer extensions', function(){
 			var expectedResult = Array.prototype.slice.call(values);
 			expectedResult.sort(compare);
 			var collection = new LiveCollection.MutableCollection(values);
-			expect(collection.sort(compare).values()).toEqual(expectedResult);});});});
+			expect(collection.sort(compare).values()).toEqual(expectedResult);});});
+
+	describe('Reverse', function(){
+
+		it('returns the collection reversed.', function(){
+			var values = [5, 2, 7, -1];
+			var expectedResult = Array.prototype.slice.call(values);
+			expectedResult.reverse();
+			var collection = new LiveCollection.MutableCollection(values);
+			expect(collection.reverse().values()).toEqual(expectedResult);});});});
 

@@ -62,5 +62,8 @@
 	LiveCollection.addTransformer('sort', function(f){
 		return this.values().sort(f);});
 
+	LiveCollection.addTransformer('reverse', function(){
+		return this.values().reverse();});
+
 })(LiveCollection);
 

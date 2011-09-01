@@ -127,6 +127,10 @@ trutyh.
 
 Returns the collection sorted by `f`.
 
+#### `reverse()`
+
+Returns the collection reversed.
+
 License
 -------
 
