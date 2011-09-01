@@ -53,14 +53,13 @@
 	LiveCollection.addTransformer('tail', function(n){
 		return this.values().slice(this.values().length-n);});
 
-	LiveCollection.addTransformer('map', function(f){
-		return this.values().map(f);});
+	var arrayTransformers = ['map', 'filter', 'sort'];
 
-	LiveCollection.addTransformer('filter', function(f){
-		return this.values().filter(f);});
-
-	LiveCollection.addTransformer('sort', function(f){
-		return this.values().sort(f);});
+	for(var i=arrayTransformers.length;i--;){
+		var arrayTransformer = arrayTransformers[i];
+		LiveCollection.addTransformer(arrayTransformer, (function(name){
+			return function(f){
+				return this.values()[name](f);};})(arrayTransformer));}
 
 	LiveCollection.addTransformer('reverse', function(){
 		return this.values().reverse();});
