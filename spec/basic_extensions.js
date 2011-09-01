@@ -202,5 +202,15 @@ describe('Standard transformer extensions', function(){
 			var odd = function(n){ return n%2; };
 			var expectedResult = values.filter(odd);
 			var collection = new LiveCollection.MutableCollection(values);
-			expect(collection.filter(odd).values()).toEqual(expectedResult);});});});
+			expect(collection.filter(odd).values()).toEqual(expectedResult);});});
+
+	describe('Sort', function(){
+
+		it('returns a sorted collection.', function(){
+			var values = [false, true, true, false, true, false];
+			var compare = function(left, right){ return left-right; };
+			var expectedResult = Array.prototype.slice.call(values);
+			expectedResult.sort(compare);
+			var collection = new LiveCollection.MutableCollection(values);
+			expect(collection.sort(compare).values()).toEqual(expectedResult);});});});
 

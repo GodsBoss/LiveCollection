@@ -123,6 +123,10 @@ Returns a collection where all items `item` are replaced by `f(item)`.
 Returns a collection containing only the items `item` where `f(item)` is
 trutyh.
 
+#### `sort(f)`
+
+Returns the collection sorted by `f`.
+
 License
 -------
 

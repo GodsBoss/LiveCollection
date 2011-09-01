@@ -59,5 +59,8 @@
 	LiveCollection.addTransformer('filter', function(f){
 		return this.values().filter(f);});
 
+	LiveCollection.addTransformer('sort', function(f){
+		return this.values().sort(f);});
+
 })(LiveCollection);
 
